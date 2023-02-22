@@ -1,5 +1,7 @@
 <template>
-  <el-aside width="200px">Aside</el-aside>
+  <div>
+    <el-main>Main</el-main>
+  </div>
 </template>
 
 <script>
@@ -7,10 +9,10 @@ export default {};
 </script>
 
 <style lang="stylus" scoped>
-.el-aside {
-  background-color: #d3dce6;
+.el-main {
+  background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 200px;
+  line-height: 160px;
 }
 </style>

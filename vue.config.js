@@ -22,6 +22,6 @@ module.exports = defineConfig({
       // , new BundleAnalyzerPlugin()
     ],
     //提高 IDE 性能
-    exclude: ["node_modules", "dist", "build"],
+    // exclude: ["node_modules", "dist", "build"],
   },
 });

@@ -1,18 +1,39 @@
 <template>
   <el-container>
-    <el-header>Header</el-header>
+    <el-aside width="200px">
+      <v-side></v-side>
+    </el-aside>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <el-header>
+        <v-header></v-header>
+      </el-header>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-export default {};
+import vSide from "@/homeComponents/vSide.vue";
+import vHeader from "@/homeComponents/vHeader.vue";
+import { routes } from "@/assets/consts/consts";
+export default {
+  components: {
+    vSide,
+    vHeader,
+  },
+  data() {
+    return {
+      routes,
+    };
+  },
+};
 </script>
 
 <style lang="stylus" scoped>
+.el-container
+  height 100vh
 .el-header,
 .el-footer {
   background-color: #b3c0d1;
@@ -26,6 +47,7 @@ export default {};
   color: #333;
   text-align: center;
   line-height: 200px;
+  // height 100vh
 }
 
 .el-main {
@@ -33,6 +55,7 @@ export default {};
   color: #333;
   text-align: center;
   line-height: 160px;
+  height 100%
 }
 
 body > .el-container {
