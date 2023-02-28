@@ -1,0 +1,69 @@
+apply(props)
+  props = arguments if length(arguments) > 1
+  for prop in props
+    {prop[0]} prop[1]
+
+
+// size (width, height)
+size(width, height = width)
+  width width
+  height height
+
+/**
+ * 定位方法用法（以absolute为例）：
+ * absolute top 2px, left 2rem
+ * 以上是需要指定两个方向的位移，中间用逗号分隔，可以直接使用apply
+ * absolute top 2px
+ * 以上在方法中获取的arguments没有逗号分隔，会造成for prop in props获取不到成对变量（即prop是一个值而不是数组，apply方法会报错）
+ */
+apply-position(props)
+  if list-separator(arguments) == ','
+    apply(arguments)
+  else
+    {props[0]} props[1]
+
+absolute()
+  position absolute
+  apply-position(arguments)
+
+relative()
+  position relative
+  apply-position(arguments)
+
+fixed()
+  position fixed
+  apply-position(arguments)
+
+/**
+ * 使用text-overflow ellipsis时会自动补全
+ * 超出部分变成省略号
+ */
+text-overflow(type)
+  if type == ellipsis
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+
+/**
+ * border-radius相关
+ */
+border-top-radius(radius)
+  border-top-left-radius radius
+  border-top-right-radius radius
+border-bottom-radius(radius)
+  border-bottom-left-radius radius
+  border-bottom-right-radius radius
+border-left-radius(radius)
+  border-bottom-left-radius radius
+  border-top-left-radius radius
+border-right-radius(radius)
+  border-bottom-right-radius radius
+  border-top-right-radius radius
+
+/**
+ * 渐变字体颜色
+ */
+gradient-text(gradient)
+  background-image gradient
+  background-clip text
+  -webkit-text-fill-color transparent

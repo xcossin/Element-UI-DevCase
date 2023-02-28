@@ -24,4 +24,11 @@ module.exports = defineConfig({
     //提高 IDE 性能
     // exclude: ["node_modules", "dist", "build"],
   },
+  css: {
+    loaderOptions: {
+      stylus: {
+        import: [path.join(__dirname, "./src/assets/css/_mixin.styl")],
+      },
+    },
+  },
 });

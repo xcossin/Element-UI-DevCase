@@ -7,7 +7,7 @@
       <el-header>
         <v-header></v-header>
       </el-header>
-      <el-main>
+      <el-main class="div-main">
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -51,10 +51,8 @@ export default {
 }
 
 .el-main {
-  background-color: #e9eef3;
+  background-color: #ffffff;
   color: #333;
-  text-align: center;
-  line-height: 160px;
   height 100%
 }
 

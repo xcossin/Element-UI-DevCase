@@ -58,7 +58,7 @@ export default {
   height: 45px;
   line-height: 45px;
 }
-.el-menu-item {
+/* .el-menu-item {
   background-color: #fb6d49;
 }
 .el-menu-item .is-active {
@@ -66,5 +66,5 @@ export default {
 }
 .el-submenu .item_el-menu:hover {
   background: #fb6d49 !important;
-}
+} */
 </style>

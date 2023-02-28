@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "element-ui": "^2.15.12",
+    "normalize.css": "^8.0.1",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
@@ -27,8 +28,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "prettier": "^2.4.1",
-    "stylus": "^0.59.0",
-    "stylus-loader": "^6.1.0",
+    "stylus": "0.54.5",
+    "stylus-loader": "3.0.2",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
