@@ -2,15 +2,19 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
+// 引入  rem.js 详见说明文件：rem_README
+import "./utils/rem.js";
 /* 统一引入css文件 */
 import "./utils/importCss";
-/* 引入Element-UI */
-import { installElement } from "@/utils/element";
-installElement(Vue);
+/* 完整引入Element-ui */
+import ElementUI from "element-ui";
+Vue.use(ElementUI);
+
+/* 按需引入Element-UI */
+/* import { installElement } from "@/utils/element";
+import "element-ui/lib/theme-chalk/index.css";
+installElement(Vue); */
 Vue.config.productionTip = false;
-// Vue.use(ElementUI);
 
 new Vue({
   router,

@@ -3,7 +3,7 @@ import HomePage from "@/pages/HomePage.vue";
 
 // elemet-ui组件
 import ElUpLoad from "@/elComponents/ElUpLoad/ElUpLoad.vue";
-import ElTree from "@/elComponents/ElTree.vue";
+// import ElTree from "@/elComponents/ElTree.vue";
 
 export const routes = [
   {
@@ -11,7 +11,7 @@ export const routes = [
     name: "home",
     component: HomePage,
     meta: {
-      routerName: "Upload 上传",
+      routerName: "首页",
     },
     children: [
       {
@@ -19,18 +19,27 @@ export const routes = [
         component: ElUpLoad,
         meta: { routerName: "Upload 上传" },
       },
-      //嵌套的二级路由前面不用加斜杠/     /index/upLoad
-      {
-        path: "/treeCom",
-        component: ElTree,
-        meta: { routerName: "Upload 上传" },
-      },
-      // { path: "shop", component: shop }, //   /index/shop
-      // { path: "cates", component: cates },
-      // { path: "home", component: home },
       //嵌套的二级路由重定向不用加*
       { path: "", redirect: "/uploadCom" },
     ],
+    // children: [
+    //   {
+    //     path: "/uploadCom",
+    //     component: ElUpLoad,
+    //     meta: { routerName: "Upload 上传" },
+    //   },
+    //   //嵌套的二级路由前面不用加斜杠/     /index/upLoad
+    //   {
+    //     path: "/treeCom",
+    //     component: ElTree,
+    //     meta: { routerName: "Upload 上传" },
+    //   },
+    //   // { path: "shop", component: shop }, //   /index/shop
+    //   // { path: "cates", component: cates },
+    //   // { path: "home", component: home },
+    //   //嵌套的二级路由重定向不用加*
+    //   { path: "", redirect: "/index" },
+    // ],
   },
   {
     path: "/about",

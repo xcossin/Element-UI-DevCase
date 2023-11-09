@@ -49,10 +49,14 @@ export default {
 
 <style lang="stylus" scoped>
 .header-wrap{
-  height: 100%;
+  height .8rem;
   display:flex;
+  background: #6ec9ec
+  border-bottom .01rem solid #e0e5f0
   .logo{
-    width: .5rem;
+    width: 1rem;
+    height 1rem
+    // border 1px solid red
   }
   .router-btn{
     width: auto;

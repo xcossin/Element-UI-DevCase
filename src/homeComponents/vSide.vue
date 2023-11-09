@@ -1,42 +1,21 @@
 <template>
   <div class="side">
-    <el-col :span="24" class="title">
-      <div class="grid-content bg-purple">Element-UI案例</div>
-    </el-col>
-    <el-col :span="24">
-      <!--  default-active 默认激活的对应的index -->
-      <!-- router:是否开启路由模式，开启后会以index属性作为路径跳转 -->
-      <el-menu
-        :default-active="defaultActive"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-      >
-        <el-menu-item
-          v-for="(item, i) in routers"
-          :index="i + ''"
-          :key="item.path"
-        >
-          <i class="el-icon-menu"></i>
-          <span slot="title">{{ item.routerName }}</span>
-        </el-menu-item>
-      </el-menu>
-    </el-col>
+    <div class="side-item" v-for="item in routerSilders" :key="item.path">
+      <!-- <span @click="goToPath(item)">{{ item.routerName }}</span> -->
+      <div>{{ item.routerName }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 // 引入vuex的辅助函数
 import { mapGetters, mapMutations } from "vuex";
-import { routers } from "@/assets/consts/consts";
+import { routerSilders } from "@/assets/consts/consts";
 export default {
   data() {
     return {
-      routers,
-      defaultActive: "0",
+      routerSilders,
+      defaultActive: "1",
     };
   },
   created() {
@@ -52,6 +31,16 @@ export default {
     ...mapMutations(["cleatUserInfo"]),
     handleOpen() {},
     handleClose() {},
+    /**
+     * @name 王本灿
+     * @Date 2023-06-26 16:45:47
+     * @introduction 展示二级路由
+     * @description 详细描述
+     * @param {参数类型} itemInfo 项信息
+     */
+    goToPath(itemInfo) {
+      console.log("itemInfo", itemInfo);
+    },
   },
 };
 </script>
@@ -59,6 +48,17 @@ export default {
 <style lang="stylus" scoped>
 .side
   overflow: hidden
+  padding 10px 0
+  height 100%
+  .side-item
+    cursor pointer
+    span
+      display inline-block
+      padding:10px
+  .side-item:hover
+    background: #79a1e3;
+  .side-item + .side-item
+    margin-top: 10px
 .title
   width: 100%;
   text-align: center;
@@ -73,19 +73,4 @@ export default {
   height: 45px;
   line-height: 45px;
 }
-.el-submenu .el-menu-item {
-  /* min-width: 0; */
-  color: #fff;
-  height: 45px;
-  line-height: 45px;
-}
-/* .el-menu-item {
-  background-color: #fb6d49;
-}
-.el-menu-item .is-active {
-  background-color: #fb6d49;
-}
-.el-submenu .item_el-menu:hover {
-  background: #fb6d49 !important;
-} */
 </style>
