@@ -7,7 +7,7 @@ module.exports = {
     node: true
   },
   // 指定要扩展的配置选项
-  extends: ['plugin:vue/essential', '@vue/standard'],
+  extends: ['plugin:vue/essential'],
   // 定义规则及其值
   rules: {
     'no-console': 'off',

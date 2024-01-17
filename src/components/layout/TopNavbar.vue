@@ -49,10 +49,18 @@ export default {
 
 <style lang="stylus" scoped>
 .header-wrap{
-  height .8rem;
+  height: .8rem;
+  background-color: #fff;
+  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 80px;
+  z-index: 100;
+  position: relative;
   display:flex;
-  background: #6ec9ec
-  border-bottom .01rem solid #e0e5f0
+  // background: #6ec9ec
+  border-bottom .01rem solid #dcdfe6
   .logo{
     width: 1rem;
     height 1rem
