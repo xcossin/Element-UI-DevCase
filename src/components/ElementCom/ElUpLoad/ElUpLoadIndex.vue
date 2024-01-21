@@ -6,10 +6,14 @@
 
  -->
 <template>
-  <div class="">
+  <div class="element-com">
     <div>
-      <h3>更新组件说明</h3>
-      <div class="upload-wrap">
+      <h2>el-upload 上传组件</h2>
+      <el-divider></el-divider>
+      <div>
+        <ElUploadCard />
+      </div>
+      <!-- <div class="upload-wrap">
         <el-collapse v-model="activeNames" @change="handleChange">
           <el-collapse-item title="Gif动画展示" name="1">
             <div class="d-flex f-d-col text-cen f12-gray w-auto">
@@ -22,41 +26,20 @@
             </div>
           </el-collapse-item>
         </el-collapse>
-      </div>
+      </div> -->
     </div>
-    <el-row>
-      <el-col :sm="24" class="d-flex">
-        <el-upload
-          action="#"
-          accept="image/*"
-          ref="upload"
-          :auto-upload="true"
-          :http-request="newUploadFile"
-          multiple
-          :limit="4"
-          list-type="picture-card"
-          :before-upload="handleBeforeUpload"
-          :on-preview="handlePictureCardPreview"
-          :on-remove="handleRemove"
-          :file-list="fileListUrl"
-          :on-exceed="handleExceed"
-          :on-change="handleAddChange"
-        >
-          <i class="el-icon-plus"></i>
-        </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="" />
-        </el-dialog>
-      </el-col>
-    </el-row>
   </div>
 </template>
 
 <script>
 import imgCompress from "./imgCompress";
+import ElUploadCard from "@/components/ElementCom/ElUpLoad/ElUpload1/ElUploadCard.vue";
 
 export default {
   name: "ElUpLoad",
+  components:{
+    ElUploadCard,
+  },
   mixins: [imgCompress],
   data() {
     return {
@@ -138,6 +121,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.element-com
+  size 100% 100%
 // .upload-wrap
 //   padding 24px
 // .img-gif

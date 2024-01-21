@@ -22,7 +22,7 @@ export const elementRouterList = [
         groupName:'分组1',
         menuList:[
           {
-            menuName:'上传组件',
+            menuName:'el-upload 上传组件',
             path:"uploadCom",
             belongTo:'分组1',
             menuIndex:1,

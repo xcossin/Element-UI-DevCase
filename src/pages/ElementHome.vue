@@ -35,4 +35,5 @@ export default {
   background: #ffffff
   .com-body-con
     padding .25rem
+    overflow: auto
 </style>

@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { elementRouterList } from "@/assets/consts/consts.js";
+import { elementRouterList } from "@/assets/consts/routerConsts.js";
 // 引入vuex的辅助函数
 import { mapGetters, mapMutations } from "vuex";
 
@@ -112,11 +112,13 @@ export default {
 
 <style lang="stylus" scoped>
 .side-wrap
-  width: 1.8rem;
+  min-width: 1.8rem;
   display:flex;
   border-right .01rem solid #e0e5f0
   box-shadow: inset -0.39px 0px 0px 0px #DFE5F1;
   overflow: hidden;
-  .el-menu-vertical-demo
+  >>>.el-menu-vertical-demo
     width 100%
+    .el-menu-item
+      min-width unset
 </style>

@@ -6,7 +6,8 @@ import store from "./store";
 /* 完整引入Element-ui */
 import ElementUI from "element-ui";
 import 'element-ui/lib/theme-chalk/index.css';
-
+import hljs from 'highlight.js/lib/common';
+// import vuePlugin from "@highlightjs/vue-plugin";
 // 引入  rem.js 详见说明文件：rem_README
 import "./utils/rem.js";
 /* 统一引入css文件 */
@@ -18,6 +19,7 @@ import "element-ui/lib/theme-chalk/index.css";
 installElement(Vue); */
 Vue.config.productionTip = true;
 Vue.use(ElementUI);
+// Vue.use(vuePlugin);
 new Vue({
   router,
   store,

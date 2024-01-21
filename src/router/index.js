@@ -18,7 +18,7 @@ export const routes = [
         children:[
           {
             path: 'uploadCom',
-            component: () => import('@/components/ElementCom/ElUpLoad/ElUpLoad.vue')
+            component: () => import('@/components/ElementCom/ElUpLoad/ElUpLoadIndex.vue')
           },
         ]
       },
