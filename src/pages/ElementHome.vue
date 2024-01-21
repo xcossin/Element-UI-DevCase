@@ -1,10 +1,10 @@
 <template>
   <div class="home-page">
-    <!-- 顶部导航 -->
-    <TopNavbar />
-    <div class="body-box d-flex h100">
-      <!-- 一级路由内容 -->
-      <div class="sub-body-con flex-1 h100">
+    <div class="com-body-box d-flex h100">
+      <!-- 侧边导航 -->
+      <SideNavbar :routerList="routerList" />
+      <!-- 路由内容 -->
+      <div class="com-body-con flex-1 h100">
         <router-view />
       </div>
     </div>
@@ -12,15 +12,16 @@
 </template>
 
 <script>
-import TopNavbar from "@/components/layout/TopNavbar.vue";
+import SideNavbar from "@/components/layout/SideNavbar.vue";
 import { routes } from "@/assets/consts/consts";
 export default {
   components: {
-    TopNavbar,
+    SideNavbar
   },
   data() {
     return {
       routes,
+      routerList:[]
     };
   },
 };
@@ -32,6 +33,6 @@ export default {
   height 100vh
   position: relative
   background: #ffffff
-  // .body-box
-  //   margin-top .1rem
+  .com-body-con
+    padding .25rem
 </style>

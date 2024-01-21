@@ -8,42 +8,11 @@
 <template>
   <div class="">
     <div>
-      <h3>更新组件说明</h3>
-      <div class="upload-wrap">
-        <el-collapse v-model="activeNames" @change="handleChange">
-          <el-collapse-item title="Gif动画展示" name="1">
-            <div class="d-flex f-d-col text-cen f12-gray w-auto">
-              <img
-                class="img-gif"
-                src="@/assets/elComponents/elUpload/closeUpAn.gif"
-                alt=""
-              />
-              <span>关闭上传动画</span>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
-      </div>
+      <h3>高德地图</h3>
     </div>
     <el-row>
       <el-col :sm="24" class="d-flex">
-        <el-upload
-          action="#"
-          accept="image/*"
-          ref="upload"
-          :auto-upload="true"
-          :http-request="newUploadFile"
-          multiple
-          :limit="4"
-          list-type="picture-card"
-          :before-upload="handleBeforeUpload"
-          :on-preview="handlePictureCardPreview"
-          :on-remove="handleRemove"
-          :file-list="fileListUrl"
-          :on-exceed="handleExceed"
-          :on-change="handleAddChange"
-        >
-          <i class="el-icon-plus"></i>
-        </el-upload>
+        
         <el-dialog :visible.sync="dialogVisible">
           <img width="100%" :src="dialogImageUrl" alt="" />
         </el-dialog>
@@ -138,8 +107,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-// .upload-wrap
-//   padding 24px
-// .img-gif
-//   size auto
+.upload-wrap
+  padding 24px
+.img-gif
+  // size auto
 </style>

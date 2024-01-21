@@ -16,7 +16,7 @@ import "./utils/importCss";
 /* import { installElement } from "@/utils/element";
 import "element-ui/lib/theme-chalk/index.css";
 installElement(Vue); */
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 Vue.use(ElementUI);
 new Vue({
   router,

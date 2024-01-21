@@ -1,65 +1,73 @@
 <template>
   <div class="side-wrap">
     <el-menu
-      default-active="2"
+      :default-active="defaultActive"
+      :default-openeds="openeds"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
       background-color="#545c64"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
+      <div v-for="(item,index) in menuList" :key="index">
+        <el-submenu 
+          v-if="item.isHaveGroup" 
+          :index="String(index)" >
+          <template slot="title">
+            <i :class="item.icon"></i>
+            <span>{{item.navigationName}}</span>
+          </template>
+          <div v-if="item.isHaveGroup">
+            <el-menu-item-group 
+              v-for="(groupItem,groupIndex) in item.groupList" 
+              :key="groupIndex">
+              <template slot="title">{{groupItem.groupName}}</template>
+              <!-- <el-menu-item
+                v-for="(menuItem,menuIndex) in groupItem.menuList"
+                :key="menuIndex"
+                :index="String(index) + '-' + String(groupIndex + menuIndex)"
+                :index="String(index) + '-' + calculate(item.groupList,groupIndex,menuItem,menuIndex)"
+                @click="handlClick(item.isHaveGroup,menuItem)" >
+              </el-menu-item> -->
+              <el-menu-item
+                v-for="(menuItem,menuIndex) in groupItem.menuList"
+                :key="menuIndex"
+                :index="String(index) + '-' + menuItem.menuIndex"
+                @click="handlClick(item.isHaveGroup,menuItem)" >
+                {{menuItem.menuName}}
+              </el-menu-item>
+            </el-menu-item-group>
+          </div>
         </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <span slot="title">导航三</span>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
+        <el-menu-item 
+          v-else
+          :index="String(index)"
+          @click="handlClick(item.isHaveGroup,item)">
+          <i :class="item.icon"></i>
+          <span slot="title">{{item.navigationName}}</span>
+        </el-menu-item>
+      </div>
+      
     </el-menu>
   </div>
 </template>
 
 <script>
-// import { headerRouterPath } from "@/assets/consts/consts";
+import { elementRouterList } from "@/assets/consts/consts.js";
 // 引入vuex的辅助函数
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  props:{
+    routerList: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      isCollapse: true,
-      headerRouterPath: [],
-      routerBtnList: [
-        { label: "El样式", routerPath: "" },
-        { label: "El样式", routerPath: "" },
-        { label: "其他样式案例", routerPath: "" },
-        { label: "El样式", routerPath: "" },
-        { label: "El样式", routerPath: "" },
-        { label: "El样式", routerPath: "" },
-      ],
+      defaultActive:'1-1',
+      openeds:['1'],
       first_menus: [],
       second_menu: [],
     };
@@ -69,10 +77,26 @@ export default {
   computed: {
     // mapGetters和mapStates将数据映射到组件中的computed中，当做自己的数据来使用
     ...mapGetters(["myMenus"]),
+    menuList() {
+      let list = []
+      if(this.$route.path.includes('elementCom')){
+        list = elementRouterList
+      }else{
+        list = []
+      }
+      return list;
+    },
   },
   methods: {
     // mapMutation和mapActions将函数映射到自己按，当做自己的函数来用
     ...mapMutations(["cleatUserInfo"]),
+    calculate(groupList,groupIndex,menuItem,menuIndex){
+      groupList
+      return String()
+    },
+    handlClick(isHaveGroup,itemInfo){
+      console.log('isHaveGroup,itemInfo', isHaveGroup,itemInfo)
+    },
     logout() {
       this.$store.commit("cleatUserInfo");
     },
