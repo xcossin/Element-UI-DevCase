@@ -64,10 +64,14 @@ export default {
       default: () => [],
     },
   },
+  mounted() {
+    
+  },
   data() {
     return {
       defaultActive:'1-1',
       openeds:['1'],
+      currentPath:'uploadCom',
       first_menus: [],
       second_menu: [],
     };
@@ -94,7 +98,21 @@ export default {
       groupList
       return String()
     },
+    /**
+     * @name 王本灿
+     * @introduction 侧边栏点击事件
+     * @param {参数类型} isHaveGroup 是否为分组
+     * @param {参数类型} itemInfo 菜单信息
+     */
     handlClick(isHaveGroup,itemInfo){
+      if(itemInfo.path === this.currentPath){
+        this.$message.warning("已经在当前页面了，请勿重复打开");
+        return
+      }
+      this.currentPath = itemInfo.path
+      this.$router.push({
+        path: itemInfo.path,
+      })
       console.log('isHaveGroup,itemInfo', isHaveGroup,itemInfo)
     },
     logout() {

@@ -7,6 +7,7 @@
 <style lang="stylus">
 body
   overflow:hidden
+  font-size .18rem
 #app
   font-family Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

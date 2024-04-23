@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page">
+  <div class="element-page">
     <div class="com-body-box d-flex h100">
       <!-- 侧边导航 -->
       <SideNavbar :routerList="routerList" />
@@ -28,12 +28,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.home-page
-  width 100vw
-  height 100vh
+.element-page
+  width 100%
+  height 100%
   position: relative
   background: #ffffff
   .com-body-con
-    padding .25rem
-    overflow: auto
+    // padding .25rem
+    overflow: hidden
 </style>

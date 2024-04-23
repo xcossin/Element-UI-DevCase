@@ -1,10 +1,10 @@
 <template>
-  <div class="">
+  <div class="com-box">
+    <h3>el-upload-card 如何获取二进制文件</h3>
     <div class="component-des-box">
-      <p class="component-des">el-upload-card 如何获取二进制文件，</p>
       <p class="mar-bot-20">
         1、action参数直接定义好上传接口，直接使用el-upload组件上传文件，文件类型就是二进制类型。<br>
-        这个例子中 action="https://jsonplaceholder.typicode.com/posts/"，选择图片后上传的类型就是二进制。可以打开控制台查看。上传时默认文件file可以通过name字段设置。
+        这个例子中 action="https://jsonplaceholder.typicode.com/posts/"，选择图片后上传的类型就是二进制。可以打开控制台查看。上传时默认文件字段为file可以通过name字段设置。
       </p>
       <el-upload
         action="https://jsonplaceholder.typicode.com/posts/"
@@ -28,56 +28,43 @@
         :auto-upload="true"
         :file-list="fileList"
         :before-upload="beforeUpload"
-        :on-success="handleSuccess"
-        :on-progress="handleProgress"
-        :on-change="handleUploadChange" >
+        :on-success="onSuccess"
+        :on-progress="onProgress"
+        :on-change="onChange" >
         <i class="el-icon-plus"></i>
       </el-upload>
       <div class="mar-top-20">
         <div class="mar-top-20">
-          <el-button 
-            type="primary" 
-            @click="downloadFile('up')">下载 before-upload 转换的二进制文件</el-button>
-          <el-button 
-            type="primary" 
-            @click="downloadFile('changeFile')">下载 on-change file 转换的二进制文件</el-button>
-          <el-button 
-            type="primary" 
-            @click="downloadFile('changeFileRaw')">下载 on-change 的 raw 转换的二进制文件</el-button>
+          <span>下载文件：</span>
+          <el-select v-model="downloadFileType" 
+            placeholder="请选择下载文件" 
+            @change="downTypechange"
+            :clearable="true" >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </div>
       </div>
       <p class="mar-tAb-20">
-        2、通过组件回调方法可以获取到拥有raw属性的file对象，或者文件对象的raw属性，二者都可以转成二进制。<br>
-        但是 on-success、on-progress 方法，只有在 action 定义接口并调用后才能获取到方法的回调参数以及文件对象的raw属性，可以转成二进制。<br>
-        before-upload、on-change回调参数 file的raw值 可以通过 new Blob() 方法转成二进制文件流。<br>
-        on-change 无论 action 是否定义接口都能获取到回调参数
+        3、此组件action="#",:auto-upload="false",上传文件只调用 on-change 方法<br>
       </p>
       <el-upload
         ref="upload"
-        action="https://jsonplaceholder.typicode.com/posts/"
+        action="#"
         list-type="picture-card"
         accept=".jpg, .jpeg, .png"
-        :auto-upload="true"
-        :file-list="fileList"
+        :auto-upload="false"
+        :file-list="fileList2"
         :before-upload="beforeUpload"
-        :on-success="handleSuccess"
-        :on-progress="handleProgress"
-        :on-change="handleUploadChange" >
+        :on-success="onSuccess"
+        :on-progress="onProgress"
+        :on-change="onChange" >
         <i class="el-icon-plus"></i>
       </el-upload>
-      <div class="mar-top-20">
-        <div class="mar-top-20">
-          <el-button 
-            type="primary" 
-            @click="downloadFile('up')">下载 before-upload 转换的二进制文件</el-button>
-          <el-button 
-            type="primary" 
-            @click="downloadFile('changeFile')">下载 on-change file 转换的二进制文件</el-button>
-          <el-button 
-            type="primary" 
-            @click="downloadFile('changeFileRaw')">下载 on-change 的 raw 转换的二进制文件</el-button>
-        </div>
-      </div>
     </div>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="" />
@@ -92,12 +79,20 @@ export default {
   data() {
     return {
       fileList:[],
+      fileList2:[],
+      downloadFileType: '',
+      options: [
+        { label: '下载 before-upload 转换的二进制文件', value: 'up' },
+        { label: '下载 on-change file 转换的二进制文件', value: 'changeFile' },
+        { label: '下载 on-change 的 raw 转换的二进制文件', value: 'changeFileRaw' },
+      ],
+      upFile:{},
+      changeFile:{},
+      changeFileRaw:{},
       activeNames:'',
       dialogVisible: false,
       dialogImageUrl: "",
-      upFile:{},
-      changeFile:{},
-      changeFileRaw:{}
+      
     }
   },
   methods: {
@@ -110,9 +105,9 @@ export default {
      * @param {参数类型} fileList 当前组件的文件列表
      */
     
-    handleUploadChange (file, fileList) {
-      console.log('handleUploadChange - file, fileList', file, fileList)
-      console.log('handleUploadChange - file.row', file.raw)
+    onChange (file, fileList) {
+      console.log('onChange - file, fileList', file, fileList)
+      console.log('onChange - file.row', file.raw)
       const types = ['image/jpeg', 'image/jpg', 'image/png']
       const blob = new Blob([file], { type: file.raw.type })
       console.log('blob', blob)
@@ -143,7 +138,7 @@ export default {
     beforeUpload(file){
       console.log('beforeUpload - file', file)
       const blob = new Blob([file], { type: file.type })
-      console.log('blob', blob)
+      console.log('new Blob 转换后的文件', blob)
       this.upFile = {
         blob: blob,
         name: file.name,
@@ -158,9 +153,9 @@ export default {
      * @param {参数类型} file 选择的文件对象
      * @param {参数类型} fileList 当前组件的文件列表
      */
-    handleSuccess (response, file, fileList) {
-      console.log('handleSuccess - response', response)
-      console.log('handleSuccess - file, fileList', file, fileList)
+    onSuccess (response, file, fileList) {
+      console.log('onSuccess - response', response)
+      console.log('onSuccess - file, fileList', file, fileList)
       const types = ['image/jpeg', 'image/jpg', 'image/png']
       const isImage = types.includes(file.raw.type)
       if (!isImage) {
@@ -176,9 +171,9 @@ export default {
      * @param {参数类型} file 选择的文件对象
      * @param {参数类型} fileList 当前组件的文件列表
      */
-    handleProgress (event, file, fileList) {
-      console.log('handleProgress - event', event)
-      console.log('handleProgress - file, fileList', file, fileList)
+    onProgress (event, file, fileList) {
+      console.log('onProgress - event', event)
+      console.log('onProgress - file, fileList', file, fileList)
       const types = ['image/jpeg', 'image/jpg', 'image/png']
       const isImage = types.includes(file.raw.type)
       if (!isImage) {
@@ -186,6 +181,34 @@ export default {
         this.handleRemove(file)
       } else {
         this.fileList = fileList
+      }
+    },
+    /**
+     * @name 王本灿
+     * @introduction 下载文件
+     * @param {参数类型} 参数 参数说明
+     */
+    downTypechange(type){
+      try {
+        if(type === 'up'){
+          const {blob,name} = this.upFile
+          saveBlobFileCus(blob,name)
+        }else if(type === 'changeFile'){
+          const {blob,name,file} = this.changeFile
+          saveBlobFileCus(file.raw,name)
+        }else if(type === 'changeFileRaw'){
+          const {blob,name,file} = this.changeFileRaw
+          saveBlobFileCus(file.raw,name)
+        }else{
+
+        }
+      } catch (error) {
+        this.$message({
+          message:'还未上传图片素材',
+          type: 'warning',
+          // duration:0,
+          showClose:true
+        })
       }
     },
     /**

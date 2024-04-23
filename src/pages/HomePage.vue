@@ -32,6 +32,11 @@ export default {
   height 100vh
   position: relative
   background: #ffffff
-  // .body-box
-  //   margin-top .1rem
+  display: flex
+  flex-direction: column
+  overflow: hidden
+  .body-box
+    // margin-top .1rem
+    flex: 1
+    overflow: hidden
 </style>

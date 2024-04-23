@@ -20,6 +20,10 @@ export const routes = [
             path: 'uploadCom',
             component: () => import('@/components/ElementCom/ElUpLoad/ElUpLoadIndex.vue')
           },
+          {
+            path: 'formCom',
+            component: () => import('@/components/ElementCom/ElForm/ElFormIndex.vue')
+          },
         ]
       },
       /*

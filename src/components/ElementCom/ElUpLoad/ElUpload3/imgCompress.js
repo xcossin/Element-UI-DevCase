@@ -199,8 +199,10 @@ export default {
     // 处理图片
     // eslint-disable-next-line
     postImg(base64, fileObj = "") {
+      console.log('base64', base64)
       // eslint-disable-next-line
       const file = this.dataURLtoFile(base64);
+      console.log('base64转化后的file', file)
       // 将所处理后的图片添加进所选图片数组
       this.fileListUrl.push({ name: "", url: base64 });
     },

@@ -22,16 +22,10 @@ export const elementRouterList = [
         groupName:'分组1',
         menuList:[
           {
-            menuName:'el-upload 上传组件',
+            menuName:'Upload',
             path:"uploadCom",
             belongTo:'分组1',
             menuIndex:1,
-          },
-          {
-            menuName:'上传组件2',
-            path:"uploadCom",
-            belongTo:'分组1',
-            menuIndex:2,
           }
         ],
       },
@@ -39,8 +33,8 @@ export const elementRouterList = [
         groupName:'分组2',
         menuList:[
           {
-            menuName:'表格组件1',
-            path:"uploadCom",
+            menuName:'Form',
+            path:"formCom",
             belongTo:'分组2',
             menuIndex:3,
           }
@@ -93,5 +87,15 @@ const routerSilders = [
     acIcon: "",
   },
 ];
+
+// element侧边路由
+export const elementSideRouterList = [
+  {
+    menuName:'Upload',
+    path:"uploadCom",
+    belongTo:'分组1',
+    menuIndex:1,
+  }
+]
 
 export { headerRouterPath, routerSilders };
