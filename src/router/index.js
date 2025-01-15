@@ -43,7 +43,7 @@ export const routes = [
       },
     ]
   },
-  { path: "*", redirect: "/index" },
+  { path: "*", redirect: "/" },
 ]
 
 Vue.use(VueRouter);
